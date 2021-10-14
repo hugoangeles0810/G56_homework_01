@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:g56_homework_01/src/pages/main/main_page.dart';
+import 'package:g56_homework_01/src/utilities/color.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -7,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Foodie',
       theme: ThemeData(
         // This is the theme of your application.
@@ -18,9 +22,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: createMaterialColor(Colors.white),
       ),
-      home: const Text("Test"),
+      home: MainPage(),
     );
   }
 }
