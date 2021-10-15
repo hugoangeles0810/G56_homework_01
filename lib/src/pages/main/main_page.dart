@@ -11,18 +11,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
-    HomePage(),
-    SearchPage()
-  ];
+  static const List<Widget> _pages = <Widget>[HomePage(), SearchPage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
+      appBar: _selectedIndex == 0 ? _appBar() : _appBarSearch(),
       body: _pages[_selectedIndex],
       bottomNavigationBar: _bottomBar(),
     );
@@ -51,6 +47,36 @@ class _MainPageState extends State<MainPage> {
               ),
             ))
       ],
+    );
+  }
+
+  AppBar _appBarSearch() {
+    return AppBar(
+        title: Text("Search", style: TextStyle(color: accentColor)),
+        centerTitle: true,
+        elevation: 0.0,
+        actions: [
+          Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: const Icon(
+                  Icons.more_horiz,
+                  color: accentColor,
+                  size: 26.0,
+                ),
+              ))
+        ],
+        leading: Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: const Icon(
+                Icons.arrow_back_ios,
+                color: accentColor,
+                size: 26.0,
+              ),
+            ))
     );
   }
 
