@@ -13,12 +13,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[HomePage(), SearchPage()];
+  static const List<Widget> _pages = <Widget>[HomePage(), SearchPage(), HomePage(), SearchPage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _selectedIndex == 0 ? _appBar() : _appBarSearch(),
+      appBar: _selectedIndex % 2 == 0 ? _appBar() : _appBarSearch(),
       body: _pages[_selectedIndex],
       bottomNavigationBar: _bottomBar(),
     );
@@ -28,7 +28,7 @@ class _MainPageState extends State<MainPage> {
     return AppBar(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           Text("Popular Recipes", style: TextStyle(color: accentColor)),
           Icon(Icons.expand_more, color: accentColor),
         ],
@@ -37,10 +37,10 @@ class _MainPageState extends State<MainPage> {
       elevation: 0.0,
       actions: [
         Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
-              child: Icon(
+              child: const Icon(
                 Icons.more_horiz,
                 color: accentColor,
                 size: 26.0,
@@ -52,7 +52,7 @@ class _MainPageState extends State<MainPage> {
 
   AppBar _appBarSearch() {
     return AppBar(
-        title: Text("Search", style: TextStyle(color: accentColor)),
+        title: const Text("Search", style: TextStyle(color: accentColor)),
         centerTitle: true,
         elevation: 0.0,
         actions: [
@@ -82,14 +82,17 @@ class _MainPageState extends State<MainPage> {
 
   Widget _bottomBar() {
     return BottomNavigationBar(
-      items: [
+      items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
         BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+        BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: "Bookmark"),
+        BottomNavigationBarItem(icon: Icon(Icons.account_circle_rounded), label: "Profile"),
       ],
       currentIndex: _selectedIndex,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       selectedItemColor: accentColor,
+      unselectedItemColor: const Color(0xFFC5C5C5),
       backgroundColor: primaryColor,
       onTap: _onItemTapped,
     );
